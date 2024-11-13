@@ -1,10 +1,12 @@
 import { verifyUser } from '@/utils';
+import { PROVIDER_CREDENTIALS } from '@/consts';
 import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
+      id: PROVIDER_CREDENTIALS,
       name: 'Credentials',
       credentials: {
         email: {
@@ -34,11 +36,11 @@ export const authOptions: NextAuthOptions = {
   pages: {
     signIn: '/login'
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: process.env.AUTH_SECRET,
   callbacks: {
     async session({ session, token }) {
       if (session.user && token.sub) {
-        session.user.id = token.sub;
+        (session.user as any).id = token.sub; // TODO any is placeholder. Improve solution
       }
       return session;
     }
