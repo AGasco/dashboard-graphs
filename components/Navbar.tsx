@@ -1,7 +1,7 @@
 'use client';
 import { Button } from '@/components';
+import { THEME_LIGHT } from '@/consts';
 import { useTheme } from '@/contexts';
-import { THEME_LIGHT } from 'consts/strings';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 

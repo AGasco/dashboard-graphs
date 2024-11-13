@@ -1,12 +1,11 @@
 'use client';
-
 import { THEME_DARK, THEME_LIGHT } from '@/consts';
 import {
   createContext,
+  ReactNode,
   useContext,
-  useState,
   useEffect,
-  ReactNode
+  useState
 } from 'react';
 
 type Theme = typeof THEME_LIGHT | typeof THEME_DARK;
