@@ -23,6 +23,7 @@
       "@/app": ["app"],
       "@/components": ["components"],
       "@/consts": ["consts"],
+      "@/contexts": ["contexts"],
       "@/data": ["data"],
       "@/hooks": ["hooks"],
       "@/styles": ["styles"],
