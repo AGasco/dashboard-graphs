@@ -1,17 +1,23 @@
 'use client';
 import { Button } from '@/components';
+import { useTheme } from '@/contexts';
+import { THEME_LIGHT } from 'consts/strings';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 
 const Navbar = () => {
   const { data: session } = useSession();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <nav className="flex items-center justify-between p-4 bg-blue-500">
       <Link href="/" className="text-xl font-bold text-white">
         Home
       </Link>
-      <div>
+      <div className="flex items-center space-x-4">
+        <Button onClick={toggleTheme}>
+          Switch to {theme === THEME_LIGHT ? 'Dark' : 'Light'} Mode
+        </Button>
         {session ? (
           <Button
             className="bg-red-500 hover:bg-red-600"
