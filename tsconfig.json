@@ -22,6 +22,7 @@
     "paths": {
       "@/app": ["app"],
       "@/components": ["components"],
+      "@/consts": ["consts"],
       "@/data": ["data"],
       "@/hooks": ["hooks"],
       "@/styles": ["styles"],
