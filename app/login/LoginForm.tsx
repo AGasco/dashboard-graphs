@@ -1,5 +1,6 @@
 'use client';
 import { Button, Input } from '@/components';
+import { PROVIDER_CREDENTIALS } from 'consts';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
@@ -13,7 +14,7 @@ const LoginForm = () => {
   const { email, password } = userInfo;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+    setUserInfo({ ...userInfo, [e.target.type]: e.target.value });
   };
 
   const handleSubmit = async (e: FormEvent) => {
