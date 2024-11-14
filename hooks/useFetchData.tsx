@@ -10,26 +10,25 @@ interface FetchDataResult<T> {
 const useFetchData = <T,>(url: string): FetchDataResult<T> => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
 
     const fetchData = async () => {
-      setIsLoading(true);
+      setLoading(true);
       setError(null);
 
       await axios
         .get(url)
         .then((res) => {
-          console.log('res', res);
           setData(res.data);
         })
         .catch((err) => {
           if (isMounted) setError(err);
         })
         .finally(() => {
-          if (isMounted) setIsLoading(false);
+          if (isMounted) setLoading(false);
         });
     };
 
