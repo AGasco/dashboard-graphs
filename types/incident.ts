@@ -6,12 +6,12 @@ export interface Incident {
   status: Status;
   assigned_to: string;
   date_reported: Date;
-  resolution_date: Date;
+  resolution_date?: Date;
   reported_by: string;
   cost: number;
 }
 
-enum Location {
+export enum Location {
   PlantA = 'Plant A',
   PlantB = 'Plant B',
   PlantC = 'Plant C',
@@ -26,7 +26,7 @@ enum Location {
   StorageSiteC = 'Storage Site C'
 }
 
-enum IncidentType {
+export enum IncidentType {
   EquipmentFailure = 'Equipment Failure',
   HumanError = 'Human Error',
   SafetyCompliance = 'Safety Compliance',
@@ -37,7 +37,7 @@ enum IncidentType {
   EnvironmentalHazard = 'Environmental Hazard'
 }
 
-enum Status {
+export enum Status {
   Open = 'Open',
   InProgress = 'In Progress',
   Resolved = 'Resolved',
