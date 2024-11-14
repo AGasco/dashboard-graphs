@@ -11,6 +11,17 @@ export interface Incident {
   cost: number;
 }
 
+export interface IncidentFilters {
+  query: '';
+  status: '';
+  incidentType: '';
+  location: '';
+  dateReportedFrom: '';
+  dateReportedTo: '';
+  resolutionDateFrom: '';
+  resolutionDateTo: '';
+}
+
 export enum Location {
   PlantA = 'Plant A',
   PlantB = 'Plant B',
