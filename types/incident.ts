@@ -6,7 +6,7 @@ export interface Incident {
   status: Status;
   assigned_to: string;
   date_reported: Date;
-  resolution_date?: Date;
+  resolution_date: Date | null;
   reported_by: string;
   cost: number;
 }
