@@ -8,6 +8,14 @@ export async function GET(req: NextRequest) {
   // TODO Implement constants for these strings
   const page = parseInt(searchParams.get('page') || '1');
   const limit = parseInt(searchParams.get('limit') || '20');
+
+  if (isNaN(page) || isNaN(limit)) {
+    return NextResponse.json(
+      { error: 'Invalid page or limit parameter' },
+      { status: 400 }
+    );
+  }
+
   const query = searchParams.get('query')?.toLowerCase() || '';
   const statusParam = searchParams.get('status') || '';
   const incidentTypeParam = searchParams.get('incident_type') || '';
