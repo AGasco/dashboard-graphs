@@ -1,10 +1,11 @@
 'use client';
-import { Button, Input, Pagination, Select } from '@/components';
+import { Input, Pagination, Select } from '@/components';
 import { IncidentType, Location, NextResponse, Status } from '@/types';
-import { enumToOptions, formatDate } from '@/utils';
+import { enumToOptions } from '@/utils';
 import useFetchData from 'hooks/useFetchData';
 import { ChangeEvent, useMemo, useState } from 'react';
 import { PulseLoader } from 'react-spinners';
+import IncidentsList from './IncidentsList';
 
 const initialState = {
   query: '',
@@ -56,7 +57,6 @@ const DashboardContent = () => {
     setInputData({ ...inputData, [e.target.name]: e.target.value });
   };
 
-  if (isLoading) return <PulseLoader />; // TODO Change color based on theme
   if (error) return <div className="text-red-500">{error.message}</div>;
 
   const incidents = data?.data || [];
@@ -65,7 +65,6 @@ const DashboardContent = () => {
   return (
     <div>
       {/* Search and Filter Controls */}
-      {/* TODO: Make form a separate component */}
       <div className="mb-4 space-y-2">
         <Input
           type="text"
@@ -146,51 +145,21 @@ const DashboardContent = () => {
           />
         </div>
 
-        {/* Apply Filters Button */}
+        {/* Apply Filters Button
         <Button
           onClick={() => setPage(1)}
           className="px-4 py-2 text-white bg-blue-500 rounded"
         >
           Apply Filters
-        </Button>
+        </Button> */}
       </div>
-      {/* TODO: Make list a separate component */}
-      {incidents.length && (
-        <table className="w-full mt-4 border-collapse">
-          <thead>
-            <tr>
-              <th className="p-2 border">ID</th>
-              <th className="p-2 border">Location</th>
-              <th className="p-2 border">Type</th>
-              <th className="p-2 border">Status</th>
-              <th className="p-2 border">Assigned To</th>
-              <th className="p-2 border">Date Reported</th>
-              <th className="p-2 border">Resolution Date</th>
-              <th className="p-2 border">Cost</th>
-            </tr>
-          </thead>
-          <tbody>
-            {incidents?.map((incident) => (
-              <tr key={incident.id}>
-                <td className="p-2 border">{incident.id}</td>
-                <td className="p-2 border">{incident.location}</td>
-                <td className="p-2 border">{incident.incident_type}</td>
-                <td className="p-2 border">{incident.status}</td>
-                <td className="p-2 border">{incident.assigned_to}</td>
-                <td className="p-2 border">
-                  {formatDate(incident.date_reported)}
-                </td>
-                <td className="p-2 border">
-                  {formatDate(incident.resolution_date)}
-                </td>
-                <td className="p-2 border">€{incident.cost}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      {!isLoading ? (
+        <IncidentsList incidents={incidents} />
+      ) : (
+        <PulseLoader className="text-center" />
       )}
 
-      {/* Pagination Controls */}
       <Pagination
         currentPage={page}
         totalItems={total}
