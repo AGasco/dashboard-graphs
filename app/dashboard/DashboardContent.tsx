@@ -3,6 +3,7 @@ import { Pagination } from '@/components';
 import { NextResponse } from '@/types';
 import useFetchData from 'hooks/useFetchData';
 import { PulseLoader } from 'react-spinners';
+import DashboardChart from './DashboardChart';
 import DashboardFilters from './DashboardFilters';
 import IncidentsList from './IncidentsList';
 import useDashboardFilters from './useDashboardFilters';
@@ -22,6 +23,7 @@ const DashboardContent = () => {
 
   return (
     <div>
+      <DashboardChart />
       <DashboardFilters inputData={inputData} handleChange={handleChange} />
 
       {!isLoading ? (
