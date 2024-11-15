@@ -1,6 +1,6 @@
 import { CHART_BAR, CHART_DOUGHNUT, CHART_LINE } from '@/consts';
 import { AvailableChartTypes } from '@/types';
-import { ChartData, ChartOptions, TooltipItem } from 'chart.js';
+import { ChartData } from 'chart.js';
 import { getChartOptions } from 'config';
 import { useMemo } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
