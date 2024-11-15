@@ -13,6 +13,10 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import { Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import useDashboardCharts from './useDashboardCharts';
 
 ChartJS.register(
@@ -37,23 +41,36 @@ const DashboardChart = () => {
   if (!stats) return null;
 
   return (
-    <div className="flex items-center">
-      <ChartWrapper
-        title="Incidents by Type"
-        type={CHART_BAR}
-        data={incidentsByTypeData}
-      />
-      <ChartWrapper
-        title="Incidents Over Time"
-        type={CHART_LINE}
-        data={incidentsByDateData}
-      />
-      <ChartWrapper
-        title="Incidents by Status"
-        type={CHART_DOUGHNUT}
-        data={incidentsByStatusData}
-      />
-    </div>
+    <Swiper
+      modules={[Navigation]}
+      spaceBetween={30}
+      slidesPerView={1}
+      navigation
+    >
+      <SwiperSlide>
+        <ChartWrapper
+          title="Incidents by Type"
+          type={CHART_BAR}
+          data={incidentsByTypeData}
+        />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <ChartWrapper
+          title="Incidents Over Time"
+          type={CHART_LINE}
+          data={incidentsByDateData}
+        />
+      </SwiperSlide>
+
+      <SwiperSlide>
+        <ChartWrapper
+          title="Incidents by Status"
+          type={CHART_DOUGHNUT}
+          data={incidentsByStatusData}
+        />
+      </SwiperSlide>
+    </Swiper>
   );
 };
 

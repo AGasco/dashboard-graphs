@@ -46,7 +46,7 @@ const options = {
 const ChartWrapper = ({ title, type, data }: Props) => {
   if (type === CHART_BAR) {
     return (
-      <div className="mb-5 w-full sm:w-1/2 lg:w-1/3 px-3">
+      <div className="mb-5 w-full">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <div className="h-64">
           <Bar data={data} options={options} />
@@ -55,7 +55,7 @@ const ChartWrapper = ({ title, type, data }: Props) => {
     );
   } else if (type === CHART_LINE) {
     return (
-      <div className="mb-5 w-full sm:w-1/2 lg:w-1/3 px-3">
+      <div className="mb-5 w-full">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <div className="h-64">
           <Line data={data} options={options} />
@@ -64,7 +64,7 @@ const ChartWrapper = ({ title, type, data }: Props) => {
     );
   } else if (type === CHART_DOUGHNUT) {
     return (
-      <div className="mb-5 w-full sm:w-1/2 lg:w-1/3 px-3">
+      <div className="mb-5 w-full">
         <h2 className="text-xl font-bold mb-4">{title}</h2>
         <div className="h-64">
           <Doughnut data={data} options={options} />
