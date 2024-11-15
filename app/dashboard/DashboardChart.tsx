@@ -85,39 +85,6 @@ const DashboardChart = ({ chartType }: Props) => {
 
   // TODO Fix TS error
   return <ChartWrapper {...chartProps} />;
-
-  // return (
-  //   <Swiper
-  //     modules={[Navigation]}
-  //     spaceBetween={30}
-  //     slidesPerView={1}
-  //     navigation
-  //   >
-  //     <SwiperSlide>
-  //       <ChartWrapper
-  //         title="Incidents by Type"
-  //         type={CHART_BAR}
-  //         data={incidentsByTypeData}
-  //       />
-  //     </SwiperSlide>
-
-  //     <SwiperSlide>
-  //       <ChartWrapper
-  //         title="Incidents Over Time"
-  //         type={CHART_LINE}
-  //         data={incidentsByDateData}
-  //       />
-  //     </SwiperSlide>
-
-  //     <SwiperSlide>
-  //       <ChartWrapper
-  //         title="Incidents by Status"
-  //         type={CHART_DOUGHNUT}
-  //         data={incidentsByStatusData}
-  //       />
-  //     </SwiperSlide>
-  //   </Swiper>
-  // );
 };
 
 export default DashboardChart;
