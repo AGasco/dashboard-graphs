@@ -27,6 +27,9 @@ export async function GET(req: NextRequest) {
   const resolutionDateFromParam = searchParams.get('resolution_date_from');
   const resolutionDateToParam = searchParams.get('resolution_date_to');
 
+  const minCostParam = searchParams.get('min_cost');
+  const maxCostParam = searchParams.get('max_cost');
+
   const dateReportedFrom = dateReportedFromParam
     ? new Date(dateReportedFromParam)
     : null;
@@ -110,6 +113,18 @@ export async function GET(req: NextRequest) {
 
       return include;
     });
+  }
+
+  if (minCostParam) {
+    filteredIncidents = filteredIncidents.filter(
+      (incident) => incident.cost >= parseInt(minCostParam)
+    );
+  }
+
+  if (maxCostParam) {
+    filteredIncidents = filteredIncidents.filter(
+      (incident) => incident.cost <= parseInt(maxCostParam)
+    );
   }
 
   const startIndex = (page - 1) * limit;
