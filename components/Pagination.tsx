@@ -28,8 +28,6 @@ const Pagination = ({
     if (currentPage < totalPages) onPageChange(currentPage + 1);
   };
 
-  if (totalPages === 0) return null;
-
   return (
     <div className="flex items-center justify-center mt-4 space-x-4">
       <Button
