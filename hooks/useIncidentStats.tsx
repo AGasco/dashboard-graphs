@@ -1,28 +1,23 @@
 import { axios } from '@/services';
+import { IncidentChartStats } from '@/types';
 import { useEffect, useState } from 'react';
 
-interface FetchDataResult<T> {
-  data: T | null;
-  error: Error | null;
-  isLoading: boolean;
-}
-
-const useFetchData = <T,>(url: string): FetchDataResult<T> => {
-  const [data, setData] = useState<T | null>(null);
+const useIncidentStats = () => {
+  const [stats, setStats] = useState<IncidentChartStats | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
 
-    const fetchData = async () => {
+    const fetchStats = async () => {
       setLoading(true);
       setError(null);
 
       await axios
-        .get(url)
+        .get('/incident-stats')
         .then((res) => {
-          setData(res.data);
+          setStats(res.data);
         })
         .catch((err) => {
           if (isMounted) setError(err);
@@ -32,14 +27,14 @@ const useFetchData = <T,>(url: string): FetchDataResult<T> => {
         });
     };
 
-    fetchData();
+    fetchStats();
 
     return () => {
       isMounted = false;
     };
-  }, [url]);
+  }, []);
 
-  return { data, error, isLoading };
+  return { stats, error, isLoading };
 };
 
-export default useFetchData;
+export default useIncidentStats;
