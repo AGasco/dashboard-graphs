@@ -1,3 +1,5 @@
+import { ChartWrapper } from '@/components';
+import { CHART_BAR, CHART_DOUGHNUT, CHART_LINE } from '@/consts';
 import { useIncidentStats } from '@/hooks';
 import {
   ArcElement,
@@ -11,7 +13,6 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
-import { Bar, Line, Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -74,18 +75,21 @@ const DashboardChart = () => {
 
   return (
     <div className="flex items-center">
-      <div className="mb-5 w-1/3 px-3">
-        <h2 className="text-xl font-bold mb-4">Incidents By Type</h2>
-        <Bar data={incidentsByTypeData} />
-      </div>
-      <div className="mb-5  w-1/3 px-3">
-        <h2 className="text-xl font-bold mb-4">Incidents Over Time</h2>
-        <Line data={incidentsByDateData} />
-      </div>
-      <div className="mb-5  w-1/3 px-3">
-        <h2 className="text-xl font-bold mb-4">Incidents By Status</h2>
-        <Doughnut data={incidentsByStatusData} />
-      </div>
+      <ChartWrapper
+        title="Incidents by Type"
+        type={CHART_BAR}
+        data={incidentsByTypeData}
+      />
+      <ChartWrapper
+        title="Incidents Over Time"
+        type={CHART_LINE}
+        data={incidentsByDateData}
+      />
+      <ChartWrapper
+        title="Incidents by Type"
+        type={CHART_DOUGHNUT}
+        data={incidentsByStatusData}
+      />
     </div>
   );
 };
