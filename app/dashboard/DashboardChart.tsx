@@ -11,7 +11,7 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar, Line, Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(
   CategoryScale,
@@ -84,7 +84,7 @@ const DashboardChart = () => {
       </div>
       <div className="mb-5  w-1/3 px-3">
         <h2 className="text-xl font-bold mb-4">Incidents By Status</h2>
-        <Pie data={incidentsByStatusData} />
+        <Doughnut data={incidentsByStatusData} />
       </div>
     </div>
   );
