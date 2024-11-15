@@ -1,3 +1,5 @@
+import { CHART_BAR, CHART_DOUGHNUT, CHART_LINE } from '@/consts';
+
 export interface Incident {
   id: number;
   location: Location;
@@ -21,6 +23,17 @@ export interface IncidentFilters {
   resolutionDateFrom: '';
   resolutionDateTo: '';
 }
+
+export interface IncidentChartStats {
+  incidentsByType: { [key: string]: number };
+  incidentsByDate: { [key: string]: number };
+  incidentsByStatus: { [key: string]: number };
+}
+
+export type AvailableChartTypes =
+  | typeof CHART_BAR
+  | typeof CHART_LINE
+  | typeof CHART_DOUGHNUT;
 
 export enum Location {
   PlantA = 'Plant A',

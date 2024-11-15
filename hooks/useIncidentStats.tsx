@@ -1,14 +1,9 @@
-import { useEffect, useState } from 'react';
 import { axios } from '@/services';
-
-interface IncidentStats {
-  incidentsByType: { [key: string]: number };
-  incidentsByDate: { [key: string]: number };
-  incidentsByStatus: { [key: string]: number };
-}
+import { IncidentChartStats } from '@/types';
+import { useEffect, useState } from 'react';
 
 const useIncidentStats = () => {
-  const [stats, setStats] = useState<IncidentStats | null>(null);
+  const [stats, setStats] = useState<IncidentChartStats | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setLoading] = useState(true);
 
