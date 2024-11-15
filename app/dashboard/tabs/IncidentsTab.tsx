@@ -1,5 +1,6 @@
 'use client';
 import { Card } from '@/components';
+import { useTheme } from '@/contexts';
 import { useFetchData } from '@/hooks';
 import { NextResponse } from '@/types';
 import { PulseLoader } from 'react-spinners';
@@ -8,6 +9,7 @@ import IncidentsList from '../IncidentsList';
 import useDashboardFilters from '../useDashboardFilters';
 
 const IncidentsTab = () => {
+  const { theme } = useTheme();
   const { inputData, queryString, page, setPage, handleChange } =
     useDashboardFilters();
 
@@ -21,10 +23,10 @@ const IncidentsTab = () => {
   const total = data?.total || 0;
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-wrap -mx-3">
-        <div className="w-full md:w-1/3 px-3">
-          <Card className="h-full">
+    <div className="space-y-6 px-12">
+      <div className="flex">
+        <div className="w-full md:w-1/3 px-3 flex flex-1">
+          <Card className="flex-1">
             <DashboardFilters
               inputData={inputData}
               handleChange={handleChange}
@@ -32,8 +34,8 @@ const IncidentsTab = () => {
           </Card>
         </div>
 
-        <div className="w-full md:w-2/3 px-3">
-          <Card>
+        <div className="w-full md:w-2/3 px-3 flex">
+          <Card className="flex-1">
             {!isLoading ? (
               <IncidentsList
                 incidents={incidents}
@@ -42,7 +44,9 @@ const IncidentsTab = () => {
                 onPageChange={(page) => setPage(page)}
               />
             ) : (
-              <PulseLoader className="text-center" />
+              <div className="flex justify-center items-center h-full w-full">
+                <PulseLoader color={theme === 'dark' ? '#f7fafc' : '#3b82f6'} />
+              </div>
             )}
           </Card>
         </div>
