@@ -17,7 +17,6 @@ const useIncidentStats = () => {
       await axios
         .get('/incident-stats')
         .then((res) => {
-          console.log('incident-stats res', res);
           setStats(res.data);
         })
         .catch((err) => {
