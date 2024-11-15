@@ -1,5 +1,7 @@
 export const PROVIDER_CREDENTIALS = 'credentials';
 
+export const PAGINATION_LIMIT = '10';
+
 export const CHART_BAR = 'bar';
 export const CHART_LINE = 'line';
 export const CHART_DOUGHNUT = 'doughnut';

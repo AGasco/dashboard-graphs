@@ -1,4 +1,5 @@
 import { Pagination } from '@/components';
+import { PAGINATION_LIMIT } from '@/consts';
 import { Incident } from '@/types';
 import { formatDate } from '@/utils';
 
@@ -52,7 +53,7 @@ const IncidentsList = ({
       <Pagination
         currentPage={incidentsPage}
         totalItems={totalIncidents}
-        itemsPerPage={20}
+        itemsPerPage={parseInt(PAGINATION_LIMIT)}
         onPageChange={onPageChange}
       />
     </>

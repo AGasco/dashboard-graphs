@@ -1,3 +1,4 @@
+import { PAGINATION_LIMIT } from '@/consts';
 import { useDebounce } from '@/hooks';
 import { IncidentFilters } from '@/types';
 import { ChangeEvent, useMemo, useState } from 'react';
@@ -34,7 +35,7 @@ const useDashboardFilters = () => {
     const params = new URLSearchParams();
 
     params.append('page', page.toString());
-    params.append('limit', '20');
+    params.append('limit', PAGINATION_LIMIT);
 
     if (debouncedQuery.trim() !== '')
       params.append('query', debouncedQuery.trim());

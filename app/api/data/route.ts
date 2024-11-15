@@ -1,3 +1,4 @@
+import { PAGINATION_LIMIT } from '@/consts';
 import { getMappedIncidents } from '@/data';
 import { Incident } from '@/types';
 import { NextRequest, NextResponse } from 'next/server';
@@ -7,7 +8,7 @@ export async function GET(req: NextRequest) {
 
   // TODO Implement constants for these strings
   const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '20');
+  const limit = parseInt(searchParams.get('limit') || PAGINATION_LIMIT);
 
   if (isNaN(page) || isNaN(limit)) {
     return NextResponse.json(
