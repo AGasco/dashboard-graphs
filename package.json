@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/chart.js": "^2.9.41",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "chart.js": "^4.4.6",
