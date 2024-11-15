@@ -1,3 +1,4 @@
+import { PAGINATION_LIMIT } from '@/consts';
 import { getMappedIncidents } from '@/data';
 import { Incident } from '@/types';
 import { NextRequest, NextResponse } from 'next/server';
@@ -7,7 +8,7 @@ export async function GET(req: NextRequest) {
 
   // TODO Implement constants for these strings
   const page = parseInt(searchParams.get('page') || '1');
-  const limit = parseInt(searchParams.get('limit') || '20');
+  const limit = parseInt(searchParams.get('limit') || PAGINATION_LIMIT);
 
   if (isNaN(page) || isNaN(limit)) {
     return NextResponse.json(
@@ -25,6 +26,9 @@ export async function GET(req: NextRequest) {
   const dateReportedToParam = searchParams.get('date_reported_to');
   const resolutionDateFromParam = searchParams.get('resolution_date_from');
   const resolutionDateToParam = searchParams.get('resolution_date_to');
+
+  const minCostParam = searchParams.get('min_cost');
+  const maxCostParam = searchParams.get('max_cost');
 
   const dateReportedFrom = dateReportedFromParam
     ? new Date(dateReportedFromParam)
@@ -109,6 +113,18 @@ export async function GET(req: NextRequest) {
 
       return include;
     });
+  }
+
+  if (minCostParam) {
+    filteredIncidents = filteredIncidents.filter(
+      (incident) => incident.cost >= parseInt(minCostParam)
+    );
+  }
+
+  if (maxCostParam) {
+    filteredIncidents = filteredIncidents.filter(
+      (incident) => incident.cost <= parseInt(maxCostParam)
+    );
   }
 
   const startIndex = (page - 1) * limit;

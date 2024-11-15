@@ -10,7 +10,7 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="flex items-center justify-between p-4 bg-blue-500">
+    <nav className="flex items-center justify-between px-4 py-2 bg-blue-500">
       <Link href="/" className="text-xl font-bold text-white">
         Home
       </Link>

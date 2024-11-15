@@ -9,10 +9,7 @@ const DashboardPage = async () => {
   if (!session) redirect('/login');
 
   return (
-    <div className="flex flex-col justify-center align-center p-4 w-full">
-      <h1 className="text-2xl font-bold">
-        Welcome, {session.user?.name || session.user?.email}!
-      </h1>
+    <div className="px-4 w-full">
       <DashboardContent />
     </div>
   );

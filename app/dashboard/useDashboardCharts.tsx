@@ -10,6 +10,7 @@ const useDashboardCharts = (stats: IncidentChartStats | null) => {
     const dataValues = Object.values(stats.incidentsByType).filter(
       (value): value is number => value !== null && typeof value === 'number'
     );
+
     return {
       labels: Object.keys(stats.incidentsByType),
       datasets: [
@@ -28,6 +29,7 @@ const useDashboardCharts = (stats: IncidentChartStats | null) => {
     const incidentsByDateLabels = Object.keys(stats.incidentsByDate).sort(
       (a, b) => new Date(a).getTime() - new Date(b).getTime()
     );
+
     return {
       labels: incidentsByDateLabels,
       datasets: [
@@ -49,6 +51,7 @@ const useDashboardCharts = (stats: IncidentChartStats | null) => {
     const dataValues = Object.values(stats.incidentsByStatus).filter(
       (value): value is number => value !== null && typeof value === 'number'
     );
+
     return {
       labels: Object.keys(stats.incidentsByStatus),
       datasets: [
@@ -66,10 +69,29 @@ const useDashboardCharts = (stats: IncidentChartStats | null) => {
     };
   }, [stats?.incidentsByStatus]);
 
+  const incidentsByCostData = useMemo(() => {
+    if (!stats?.incidentsByCost) return emptyObject;
+
+    const labels = Object.keys(stats.incidentsByCost);
+    const dataValues = labels.map((key) => stats.incidentsByCost[key]);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'Total Cost by Incident Type',
+          data: dataValues,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        }
+      ]
+    };
+  }, [stats?.incidentsByCost]);
+
   return {
     incidentsByTypeData,
     incidentsByDateData,
-    incidentsByStatusData
+    incidentsByStatusData,
+    incidentsByCostData
   };
 };
 

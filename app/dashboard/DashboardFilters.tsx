@@ -51,14 +51,14 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
       />
 
       {/* Date Reported Range Filter */}
-      <div className="flex space-x-2">
+      <div className="flex space-x-3 w-full">
         <Input
           type="date"
           name="dateReportedFrom"
           label="Date Reported From"
           value={inputData.dateReportedFrom}
           onChange={handleChange}
-          className="p-2 border rounded w-full"
+          containerClassName="flex-1"
         />
         <Input
           type="date"
@@ -66,19 +66,19 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
           label="Date Reported To"
           value={inputData.dateReportedTo}
           onChange={handleChange}
-          className="p-2 border rounded w-full"
+          containerClassName="flex-1"
         />
       </div>
 
       {/* Resolution Date Range Filter */}
-      <div className="flex space-x-2">
+      <div className="flex space-x-3 w-full">
         <Input
           type="date"
           name="resolutionDateFrom"
           label="Resolution Date From"
           value={inputData.resolutionDateFrom}
           onChange={handleChange}
-          className="p-2 border rounded w-full"
+          containerClassName="flex-1"
         />
         <Input
           type="date"
@@ -86,8 +86,39 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
           label="Resolution Date To"
           value={inputData.resolutionDateTo}
           onChange={handleChange}
-          className="p-2 border rounded w-full"
+          containerClassName="flex-1"
         />
+      </div>
+
+      {/* Cost Range Filter */}
+      <div className="flex space-x-3 w-full">
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-9 translate-y-px text-gray-500 pointer-events-none">
+            €
+          </span>
+          <Input
+            type="number"
+            name="minCost"
+            label="Min Cost"
+            value={inputData.minCost || ''}
+            onChange={handleChange}
+            className="w-full pl-6 p-2 border rounded"
+          />
+        </div>
+
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-9 translate-y-px text-gray-500 pointer-events-none">
+            €
+          </span>
+          <Input
+            type="number"
+            name="maxCost"
+            label="Max Cost"
+            value={inputData.maxCost || ''}
+            onChange={handleChange}
+            className="w-full pl-6 p-2 border rounded"
+          />
+        </div>
       </div>
     </div>
   );

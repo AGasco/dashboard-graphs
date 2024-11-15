@@ -8,19 +8,24 @@ export async function GET() {
   const incidentsByType: { [key: string]: number } = {};
   const incidentsByDate: { [key: string]: number } = {};
   const incidentsByStatus: { [key: string]: number } = {};
+  const incidentsByCost: { [key: string]: number } = {};
 
-  incidents.forEach(({ incident_type, date_reported, status }) => {
+  incidents.forEach(({ incident_type, date_reported, status, cost }) => {
     incidentsByType[incident_type] = (incidentsByType[incident_type] || 0) + 1;
 
     const month = format(date_reported, 'yyyy-MM');
     incidentsByDate[month] = (incidentsByDate[month] || 0) + 1;
 
     incidentsByStatus[status] = (incidentsByStatus[status] || 0) + 1;
+
+    incidentsByCost[incident_type] =
+      (incidentsByCost[incident_type] || 0) + (cost || 0);
   });
 
   return NextResponse.json({
     incidentsByType,
     incidentsByDate,
-    incidentsByStatus
+    incidentsByStatus,
+    incidentsByCost
   });
 }
