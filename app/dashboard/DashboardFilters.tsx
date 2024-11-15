@@ -92,22 +92,33 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
 
       {/* Cost Range Filter */}
       <div className="flex space-x-3 w-full">
-        <Input
-          type="number"
-          name="minCost"
-          label="Min Cost"
-          value={inputData.minCost || ''}
-          onChange={handleChange}
-          containerClassName="flex-1"
-        />
-        <Input
-          type="number"
-          name="maxCost"
-          label="Max Cost"
-          value={inputData.maxCost || ''}
-          onChange={handleChange}
-          containerClassName="flex-1"
-        />
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-9 translate-y-px text-gray-500 pointer-events-none">
+            €
+          </span>
+          <Input
+            type="number"
+            name="minCost"
+            label="Min Cost"
+            value={inputData.minCost || ''}
+            onChange={handleChange}
+            className="w-full pl-6 p-2 border rounded"
+          />
+        </div>
+
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-9 translate-y-px text-gray-500 pointer-events-none">
+            €
+          </span>
+          <Input
+            type="number"
+            name="maxCost"
+            label="Max Cost"
+            value={inputData.maxCost || ''}
+            onChange={handleChange}
+            className="w-full pl-6 p-2 border rounded"
+          />
+        </div>
       </div>
     </div>
   );
