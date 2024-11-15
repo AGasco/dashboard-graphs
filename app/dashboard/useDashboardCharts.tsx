@@ -66,10 +66,29 @@ const useDashboardCharts = (stats: IncidentChartStats | null) => {
     };
   }, [stats?.incidentsByStatus]);
 
+  const incidentsByCostData = useMemo(() => {
+    if (!stats?.incidentsByCost) return emptyObject;
+
+    const labels = Object.keys(stats.incidentsByCost);
+    const dataValues = labels.map((key) => stats.incidentsByCost[key]);
+
+    return {
+      labels,
+      datasets: [
+        {
+          label: 'Total Cost by Incident Type',
+          data: dataValues,
+          backgroundColor: 'rgba(255, 99, 132, 0.5)'
+        }
+      ]
+    };
+  }, [stats?.incidentsByCost]);
+
   return {
     incidentsByTypeData,
     incidentsByDateData,
-    incidentsByStatusData
+    incidentsByStatusData,
+    incidentsByCostData
   };
 };
 

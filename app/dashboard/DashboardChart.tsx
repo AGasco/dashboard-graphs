@@ -1,6 +1,7 @@
 import { ChartWrapper } from '@/components';
 import {
   CHART_BAR,
+  CHART_BY_COST,
   CHART_BY_DATE,
   CHART_BY_STATUS,
   CHART_BY_TYPE,
@@ -20,10 +21,6 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import { Navigation } from 'swiper/modules';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import useDashboardCharts from './useDashboardCharts';
 
 ChartJS.register(
@@ -42,13 +39,18 @@ interface Props {
   chartType:
     | typeof CHART_BY_TYPE
     | typeof CHART_BY_DATE
-    | typeof CHART_BY_STATUS;
+    | typeof CHART_BY_STATUS
+    | typeof CHART_BY_COST;
 }
 
 const DashboardChart = ({ chartType }: Props) => {
   const { stats, error, isLoading } = useIncidentStats();
-  const { incidentsByTypeData, incidentsByDateData, incidentsByStatusData } =
-    useDashboardCharts(stats);
+  const {
+    incidentsByTypeData,
+    incidentsByDateData,
+    incidentsByStatusData,
+    incidentsByCostData
+  } = useDashboardCharts(stats);
 
   // TODO Implement Spinner
   if (isLoading) return <div>Loading chart...</div>;
@@ -79,11 +81,18 @@ const DashboardChart = ({ chartType }: Props) => {
         data: incidentsByStatusData
       };
       break;
+    case CHART_BY_COST:
+      chartProps = {
+        title: 'Total Cost by Incident Type',
+        type: CHART_BAR,
+        data: incidentsByCostData,
+        currencySymbol: '€'
+      };
+      break;
     default:
       return null;
   }
 
-  // TODO Fix TS error
   return <ChartWrapper {...chartProps} />;
 };
 

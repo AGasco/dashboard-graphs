@@ -30,6 +30,7 @@ export interface IncidentChartStats {
   incidentsByType: { [key: string]: number };
   incidentsByDate: { [key: string]: number };
   incidentsByStatus: { [key: string]: number };
+  incidentsByCost: { [key: string]: number };
 }
 
 export type AvailableChartTypes =

@@ -1,6 +1,11 @@
 import { Card } from '@/components';
 import DashboardChart from '../DashboardChart';
-import { CHART_BY_DATE, CHART_BY_STATUS, CHART_BY_TYPE } from '@/consts';
+import {
+  CHART_BY_COST,
+  CHART_BY_DATE,
+  CHART_BY_STATUS,
+  CHART_BY_TYPE
+} from '@/consts';
 
 const OverviewTab = () => {
   return (
@@ -11,6 +16,9 @@ const OverviewTab = () => {
         </Card>
         <Card>
           <DashboardChart chartType={CHART_BY_DATE} />
+        </Card>
+        <Card>
+          <DashboardChart chartType={CHART_BY_COST} />
         </Card>
         <Card>
           <DashboardChart chartType={CHART_BY_STATUS} />
