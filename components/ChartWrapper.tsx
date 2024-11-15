@@ -6,7 +6,7 @@ import { Bar, Doughnut, Line } from 'react-chartjs-2';
 interface BaseChartProps<TType extends AvailableChartTypes> {
   title: string;
   type: TType;
-  data: ChartData<TType, number[], string>;
+  data: ChartData<TType>;
 }
 
 type Props =
