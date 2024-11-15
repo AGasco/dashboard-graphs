@@ -11,7 +11,9 @@ const initialState: IncidentFilters = {
   dateReportedFrom: '',
   dateReportedTo: '',
   resolutionDateFrom: '',
-  resolutionDateTo: ''
+  resolutionDateTo: '',
+  minCost: 0,
+  maxCost: 0
 };
 
 const useDashboardFilters = () => {
@@ -19,6 +21,8 @@ const useDashboardFilters = () => {
   const [page, setPage] = useState(1);
 
   const debouncedQuery = useDebounce(inputData.query);
+  const debouncedMinCost = useDebounce(inputData.minCost);
+  const debouncedMaxCost = useDebounce(inputData.maxCost);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -51,9 +55,13 @@ const useDashboardFilters = () => {
       params.append('resolution_date_from', inputData.resolutionDateFrom);
     if (inputData.resolutionDateTo)
       params.append('resolution_date_to', inputData.resolutionDateTo);
+    if (debouncedMinCost)
+      params.append('min_cost', debouncedMinCost.toString());
+    if (debouncedMaxCost)
+      params.append('max_cost', debouncedMaxCost.toString());
 
     return params.toString();
-  }, [page, inputData, debouncedQuery]);
+  }, [page, inputData, debouncedQuery, debouncedMinCost, debouncedMaxCost]);
 
   return { inputData, queryString, page, setPage, handleChange };
 };

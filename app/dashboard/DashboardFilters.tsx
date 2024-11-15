@@ -89,6 +89,26 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
           containerClassName="flex-1"
         />
       </div>
+
+      {/* Cost Range Filter */}
+      <div className="flex space-x-3 w-full">
+        <Input
+          type="number"
+          name="minCost"
+          label="Min Cost"
+          value={inputData.minCost || ''}
+          onChange={handleChange}
+          containerClassName="flex-1"
+        />
+        <Input
+          type="number"
+          name="maxCost"
+          label="Max Cost"
+          value={inputData.maxCost || ''}
+          onChange={handleChange}
+          containerClassName="flex-1"
+        />
+      </div>
     </div>
   );
 };

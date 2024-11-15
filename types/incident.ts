@@ -22,6 +22,8 @@ export interface IncidentFilters {
   dateReportedTo: '';
   resolutionDateFrom: '';
   resolutionDateTo: '';
+  minCost: number;
+  maxCost: number;
 }
 
 export interface IncidentChartStats {
