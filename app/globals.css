@@ -8,6 +8,7 @@
   --foreground: #171717;
   --foreground-accent: #333333;
   --primary: #3b82f6;
+  --primary-saturated: #2563eb;
   --secondary: #f7fafc;
 }
 
@@ -16,6 +17,7 @@
   --background-accent: #313846;
   --foreground: #f7fafc;
   --primary: #3b82f6;
+  --primary-saturated: #2563eb;
   --secondary: #1a202c;
 }
 

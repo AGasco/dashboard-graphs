@@ -1,4 +1,6 @@
 'use client';
+import { THEME_DARK } from '@/consts';
+import { useTheme } from '@/contexts';
 import { ReactNode, useState } from 'react';
 
 interface Tab {
@@ -13,6 +15,7 @@ interface Props {
 }
 
 const Tabs = ({ tabs, className = '' }: Props) => {
+  const { theme } = useTheme();
   const [activeTabId, setActiveTabId] = useState(tabs[0].id);
 
   return (
@@ -25,8 +28,12 @@ const Tabs = ({ tabs, className = '' }: Props) => {
               onClick={() => setActiveTabId(tab.id)}
               className={`whitespace-nowrap py-2 px-6 border-b-2 font-medium text-sm ${
                 activeTabId === tab.id
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  ? 'border-primary text-primarySaturated'
+                  : `border-transparent text-gray-500 ${
+                      theme === THEME_DARK
+                        ? 'hover:text-gray-300'
+                        : 'hover:text-gray-700'
+                    } hover:text-gray-700 hover:border-gray-300`
               }`}
             >
               {tab.label}

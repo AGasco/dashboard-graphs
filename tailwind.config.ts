@@ -15,6 +15,7 @@ export default {
         foreground: 'var(--foreground)',
         foregroundAccent: 'var(--foreground-accent)',
         primary: 'var(--primary)',
+        primarySaturated: 'var(--primary-saturated)',
         secondary: 'var(--secondary)'
       }
     }
