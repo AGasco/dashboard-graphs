@@ -6,7 +6,8 @@ import {
   CHART_BY_STATUS,
   CHART_BY_TYPE,
   CHART_DOUGHNUT,
-  CHART_LINE
+  CHART_LINE,
+  THEME_DARK
 } from '@/consts';
 import { useTheme } from '@/contexts';
 import { useIncidentStats } from '@/hooks';
@@ -58,7 +59,7 @@ const DashboardChart = ({ chartType }: Props) => {
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-full w-full">
-        <BounceLoader color={theme === 'dark' ? '#f7fafc' : '#3b82f6'} />
+        <BounceLoader color={theme === THEME_DARK ? '#f7fafc' : '#3b82f6'} />
       </div>
     );
   if (error) return <div>Error loading chart: {error.message}</div>;
