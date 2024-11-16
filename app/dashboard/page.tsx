@@ -1,4 +1,4 @@
-import { authOptions } from 'app/api/auth/[...nextauth]';
+import { authOptions } from 'app/api/auth';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import DashboardContent from './DashboardContent';

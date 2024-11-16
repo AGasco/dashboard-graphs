@@ -1,1 +1,1 @@
-export * from './[...nextauth]';
+export { authOptions } from './authOptions';
