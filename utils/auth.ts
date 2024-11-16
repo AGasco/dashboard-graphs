@@ -1,4 +1,4 @@
-import { users } from '@/data';
+import { prisma } from '@/lib';
 import { User } from '@/types';
 import bcrypt from 'bcryptjs';
 
@@ -6,12 +6,10 @@ export async function verifyUser(
   email: string,
   password: string
 ): Promise<User | null> {
-  // Simulating a database call with some delay
-  await new Promise((resolve) => setTimeout(resolve, 200));
+  const user = (await prisma.user.findUnique({ where: { email } })) as User;
+  if (!user) return null;
 
-  const user = users.find((user) => user.email === email);
+  const isValid = await bcrypt.compare(password, user.password);
 
-  if (user && (await bcrypt.compare(password, user.password))) return user;
-
-  return null;
+  return isValid ? user : null;
 }
