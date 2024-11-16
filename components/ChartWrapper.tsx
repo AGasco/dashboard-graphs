@@ -34,9 +34,9 @@ const ChartWrapper = ({ title, type, data, currencySymbol = '' }: Props) => {
   if (!ChartComponent) return null;
 
   return (
-    <div className="mb-5 w-full">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="h-64">
+    <div className="w-full">
+      <h2 className="text-xl font-bold mb-0 leading-5">{title}</h2>
+      <div className="h-56">
         <ChartComponent data={data} options={options} />
       </div>
     </div>

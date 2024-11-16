@@ -9,7 +9,7 @@ const DashboardPage = async () => {
   if (!session) redirect('/login');
 
   return (
-    <div className="px-4 w-full">
+    <div className="min-h-full flex flex-col px-4 w-full">
       <DashboardContent />
     </div>
   );

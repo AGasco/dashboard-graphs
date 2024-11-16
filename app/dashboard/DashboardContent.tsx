@@ -8,7 +8,7 @@ const DashboardContent = () => {
     { id: 'incidents', label: 'Incidents', content: <IncidentsTab /> }
   ];
 
-  return <Tabs tabs={tabs} />;
+  return <Tabs tabs={tabs} className="flex-1" />;
 };
 
 export default DashboardContent;

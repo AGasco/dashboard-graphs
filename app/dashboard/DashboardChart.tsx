@@ -6,8 +6,10 @@ import {
   CHART_BY_STATUS,
   CHART_BY_TYPE,
   CHART_DOUGHNUT,
-  CHART_LINE
+  CHART_LINE,
+  THEME_DARK
 } from '@/consts';
+import { useTheme } from '@/contexts';
 import { useIncidentStats } from '@/hooks';
 import {
   ArcElement,
@@ -21,6 +23,7 @@ import {
   Title,
   Tooltip
 } from 'chart.js';
+import { BounceLoader } from 'react-spinners';
 import useDashboardCharts from './useDashboardCharts';
 
 ChartJS.register(
@@ -44,6 +47,7 @@ interface Props {
 }
 
 const DashboardChart = ({ chartType }: Props) => {
+  const { theme } = useTheme();
   const { stats, error, isLoading } = useIncidentStats();
   const {
     incidentsByTypeData,
@@ -52,8 +56,12 @@ const DashboardChart = ({ chartType }: Props) => {
     incidentsByCostData
   } = useDashboardCharts(stats);
 
-  // TODO Implement Spinner
-  if (isLoading) return <div>Loading chart...</div>;
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-full w-full">
+        <BounceLoader color={theme === THEME_DARK ? '#f7fafc' : '#3b82f6'} />
+      </div>
+    );
   if (error) return <div>Error loading chart: {error.message}</div>;
   if (!stats) return null;
 
