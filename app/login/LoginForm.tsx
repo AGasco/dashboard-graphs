@@ -34,7 +34,10 @@ const LoginForm = () => {
   };
 
   return (
-    <form className="p-6 bg-white rounded shadow-md" onSubmit={handleSubmit}>
+    <form
+      className="p-6 bg-background rounded shadow-md"
+      onSubmit={handleSubmit}
+    >
       <h1 className="mb-4 text-2xl font-bold text-center">Sign In</h1>
       <div className="mb-4">
         <Input

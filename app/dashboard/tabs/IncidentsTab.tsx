@@ -1,6 +1,5 @@
 'use client';
 import { Card } from '@/components';
-import { useTheme } from '@/contexts';
 import { useFetchData } from '@/hooks';
 import { NextResponse } from '@/types';
 import { PulseLoader } from 'react-spinners';
@@ -9,7 +8,6 @@ import IncidentsList from '../IncidentsList';
 import useDashboardFilters from '../useDashboardFilters';
 
 const IncidentsTab = () => {
-  const { theme } = useTheme();
   const { inputData, queryString, page, setPage, handleChange } =
     useDashboardFilters();
 
@@ -45,7 +43,7 @@ const IncidentsTab = () => {
               />
             ) : (
               <div className="flex justify-center items-center h-full w-full">
-                <PulseLoader color={theme === 'dark' ? '#f7fafc' : '#3b82f6'} />
+                <PulseLoader color="var(--primary)" />
               </div>
             )}
           </Card>

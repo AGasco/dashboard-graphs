@@ -1,19 +1,21 @@
+import { CHART_DOUGHNUT } from '@/consts';
+import { AvailableChartTypes, ThemeColors } from '@/types';
 import { prefixCurrency } from '@/utils';
-import { TooltipItem } from 'chart.js';
-import { CHART_DOUGHNUT, CHART_BAR, CHART_LINE } from 'consts/strings';
-import { AvailableChartTypes } from 'types/incident';
+import { ChartOptions, ChartType } from 'chart.js';
 
 export const getChartOptions = (
   type: AvailableChartTypes,
-  currencySymbol: string
-) => {
-  return {
+  currencySymbol: string,
+  colors: ThemeColors
+): ChartOptions<ChartType> => {
+  const baseOptions: ChartOptions<ChartType> = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
       legend: {
-        position: 'top' as const,
+        position: 'top',
         labels: {
+          color: colors.foregroundAccent,
           font: {
             size: 14
           }
@@ -25,15 +27,14 @@ export const getChartOptions = (
       },
       tooltip: {
         enabled: true,
-        mode: type === CHART_DOUGHNUT ? 'index' : ('nearest' as const),
+        mode: type === CHART_DOUGHNUT ? 'index' : 'nearest',
         intersect: false,
         callbacks: {
-          label: function (
-            context: TooltipItem<
-              typeof CHART_BAR | typeof CHART_LINE | typeof CHART_DOUGHNUT
-            >
-          ) {
-            let label = context.dataset.label || '';
+          label: function (context) {
+            let label = '';
+
+            const dataset = context.dataset as { label?: string };
+            label = dataset.label || '';
             if (label) {
               label += ': ';
             }
@@ -46,10 +47,11 @@ export const getChartOptions = (
                 label += value.toLocaleString();
               }
             } else {
-              if (context.parsed.y !== null) {
+              const parsed = context.parsed as { y: number };
+              if (parsed.y !== null && parsed.y !== undefined) {
                 label += currencySymbol
-                  ? prefixCurrency(context.parsed.y, currencySymbol)
-                  : context.parsed.y.toLocaleString();
+                  ? prefixCurrency(parsed.y, currencySymbol)
+                  : parsed.y.toLocaleString();
               }
             }
 
@@ -58,24 +60,34 @@ export const getChartOptions = (
         }
       }
     },
-    scales:
-      type === CHART_DOUGHNUT
-        ? {}
-        : {
-            y: {
-              ticks: {
-                callback: function (value: number) {
-                  return currencySymbol
-                    ? prefixCurrency(value, currencySymbol)
-                    : value.toLocaleString();
-                }
-              }
-            }
-          },
     interaction: {
-      mode: 'nearest' as const,
-      axis: 'x' as const,
+      mode: 'nearest',
+      axis: 'x',
       intersect: false
     }
   };
+
+  if (type !== CHART_DOUGHNUT) {
+    baseOptions.scales = {
+      x: {
+        ticks: {
+          color: colors.foregroundAccent
+        }
+      },
+      y: {
+        ticks: {
+          color: colors.foregroundAccent,
+          callback: function (tickValue: string | number): string {
+            const value =
+              typeof tickValue === 'number' ? tickValue : parseFloat(tickValue);
+            return currencySymbol
+              ? prefixCurrency(value, currencySymbol)
+              : value.toLocaleString();
+          }
+        }
+      }
+    };
+  }
+
+  return baseOptions;
 };

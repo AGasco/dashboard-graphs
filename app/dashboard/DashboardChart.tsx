@@ -6,10 +6,8 @@ import {
   CHART_BY_STATUS,
   CHART_BY_TYPE,
   CHART_DOUGHNUT,
-  CHART_LINE,
-  THEME_DARK
+  CHART_LINE
 } from '@/consts';
-import { useTheme } from '@/contexts';
 import { useIncidentStats } from '@/hooks';
 import {
   ArcElement,
@@ -47,7 +45,6 @@ interface Props {
 }
 
 const DashboardChart = ({ chartType }: Props) => {
-  const { theme } = useTheme();
   const { stats, error, isLoading } = useIncidentStats();
   const {
     incidentsByTypeData,
@@ -59,7 +56,7 @@ const DashboardChart = ({ chartType }: Props) => {
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-full w-full">
-        <BounceLoader color={theme === THEME_DARK ? '#f7fafc' : '#3b82f6'} />
+        <BounceLoader color="var(--primary)" />
       </div>
     );
   if (error) return <div>Error loading chart: {error.message}</div>;

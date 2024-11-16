@@ -1,3 +1,4 @@
+'use client';
 import { axios } from '@/services';
 import { IncidentChartStats } from '@/types';
 import { useEffect, useState } from 'react';
