@@ -1,4 +1,5 @@
 import { CHART_BAR, CHART_DOUGHNUT, CHART_LINE } from '@/consts';
+import { useThemeColors } from '@/hooks';
 import { AvailableChartTypes } from '@/types';
 import { ChartData } from 'chart.js';
 import { getChartOptions } from 'config';
@@ -24,9 +25,11 @@ const chartComponents: Record<AvailableChartTypes, React.FC<any>> = {
 };
 
 const ChartWrapper = ({ title, type, data, currencySymbol = '' }: Props) => {
+  const themeColors = useThemeColors();
+
   const options = useMemo(
-    () => getChartOptions(type, currencySymbol),
-    [type, currencySymbol]
+    () => getChartOptions(type, currencySymbol, themeColors),
+    [type, currencySymbol, themeColors]
   );
 
   const ChartComponent = chartComponents[type];
