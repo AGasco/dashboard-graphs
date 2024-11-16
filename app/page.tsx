@@ -15,9 +15,17 @@ export default async function HomePage() {
           Go to Dashboard
         </Link>
       ) : (
-        <h1 className="text-5xl">
-          Welcome, please sign in to see the dashboard
-        </h1>
+        <div className="flex flex-col items-center">
+          <h1 className="text-5xl">
+            Welcome, please sign in to see the dashboard
+          </h1>
+          <Link
+            href="/register"
+            className="w-max px-6 py-3 mt-5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+          >
+            Sign In
+          </Link>
+        </div>
       )}
     </div>
   );

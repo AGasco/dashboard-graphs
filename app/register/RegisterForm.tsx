@@ -1,5 +1,6 @@
 'use client';
 import { Button, Input } from '@/components';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
@@ -34,44 +35,52 @@ const RegisterForm = () => {
   };
 
   return (
-    <form
-      className="p-6 bg-background rounded shadow-md"
-      onSubmit={handleSubmit}
-    >
-      <h1 className="mb-4 text-2xl font-bold text-center">Register</h1>
-      <div className="mb-4">
-        <Input
-          label="Name"
-          name="name"
-          type="text"
-          value={name}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-4">
-        <Input
-          label="Email"
-          name="email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <Button type="submit" className="w-full">
-        Register
-      </Button>
-    </form>
+    <div className="flex flex-col">
+      <form
+        className="p-6 bg-background rounded shadow-md"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="mb-4 text-2xl font-bold text-center">Register</h1>
+        <div className="mb-4">
+          <Input
+            label="Name"
+            name="name"
+            type="text"
+            value={name}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-4">
+          <Input
+            label="Email"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <Input
+            label="Password"
+            name="password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Register
+        </Button>
+      </form>
+      <p className="mt-2">
+        Do you already have an account?{' '}
+        <Link href="/login" className="text-primary">
+          Login
+        </Link>
+      </p>
+    </div>
   );
 };
 

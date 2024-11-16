@@ -26,8 +26,8 @@ const Navbar = () => {
             Sign Out
           </Button>
         ) : (
-          <Link href="/login" className="text-white">
-            Login
+          <Link href="/register" className="text-white">
+            Sign In
           </Link>
         )}
       </div>

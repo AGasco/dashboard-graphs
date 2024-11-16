@@ -2,6 +2,7 @@
 import { Button, Input } from '@/components';
 import { PROVIDER_CREDENTIALS } from 'consts';
 import { signIn } from 'next-auth/react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
@@ -34,33 +35,41 @@ const LoginForm = () => {
   };
 
   return (
-    <form
-      className="p-6 bg-background rounded shadow-md"
-      onSubmit={handleSubmit}
-    >
-      <h1 className="mb-4 text-2xl font-bold text-center">Sign In</h1>
-      <div className="mb-4">
-        <Input
-          label="Email"
-          type="email"
-          value={email}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div className="mb-6">
-        <Input
-          label="Password"
-          type="password"
-          value={password}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <Button type="submit" className="w-full">
-        Sign In
-      </Button>
-    </form>
+    <div className="flex flex-col">
+      <form
+        className="p-6 bg-background rounded shadow-md"
+        onSubmit={handleSubmit}
+      >
+        <h1 className="mb-4 text-2xl font-bold text-center">Login</h1>
+        <div className="mb-4">
+          <Input
+            label="Email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="mb-6">
+          <Input
+            label="Password"
+            type="password"
+            value={password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Login
+        </Button>
+      </form>
+      <p className="mt-2">
+        You don't have an account?{' '}
+        <Link href="/register" className="text-primary">
+          Register
+        </Link>
+      </p>
+    </div>
   );
 };
 
