@@ -4,12 +4,19 @@
 
 :root {
   --background: #ffffff;
+  --background-accent: #f3f3f3;
   --foreground: #171717;
+  --foreground-accent: #333333;
+  --primary: #3b82f6;
+  --secondary: #f7fafc;
 }
 
 [data-theme='dark'] {
   --background: #1a202c;
+  --background-accent: #313846;
   --foreground: #f7fafc;
+  --primary: #3b82f6;
+  --secondary: #1a202c;
 }
 
 body {
