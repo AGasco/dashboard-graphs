@@ -11,6 +11,7 @@ const IncidentsTab = () => {
   const { inputData, queryString, page, setPage, handleChange } =
     useDashboardFilters();
 
+  // TODO This is not a NextResponse. Change to a better naming
   const { data, error, isLoading } = useFetchData<NextResponse>(
     `/data?${queryString}`
   );
@@ -21,10 +22,10 @@ const IncidentsTab = () => {
   const total = data?.total || 0;
 
   return (
-    <div className="space-y-6 px-12">
+    <div className="space-y-6 px-2 3xl:max-w-3xl m-auto">
       <div className="flex">
-        <div className="w-full md:w-1/3 px-3 flex flex-1">
-          <Card className="flex-1">
+        <div className="w-full h-full md:w-1/3 px-3">
+          <Card className="min-h-[570px] flex-1">
             <DashboardFilters
               inputData={inputData}
               handleChange={handleChange}
@@ -32,8 +33,8 @@ const IncidentsTab = () => {
           </Card>
         </div>
 
-        <div className="w-full md:w-2/3 px-3 flex">
-          <Card className="flex-1">
+        <div className="w-full h-full md:w-2/3 px-3">
+          <Card className="min-h-[570px]">
             {!isLoading ? (
               <IncidentsList
                 incidents={incidents}
@@ -42,9 +43,10 @@ const IncidentsTab = () => {
                 onPageChange={(page) => setPage(page)}
               />
             ) : (
-              <div className="flex justify-center items-center h-full w-full">
-                <PulseLoader color="var(--primary)" />
-              </div>
+              <PulseLoader
+                className="flex-1 justify-center items-center h-full w-full mb-7"
+                color="var(--primary)"
+              />
             )}
           </Card>
         </div>

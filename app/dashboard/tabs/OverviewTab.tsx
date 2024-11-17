@@ -8,19 +8,21 @@ import {
 import DashboardChart from '../DashboardChart';
 
 const OverviewTab = () => {
+  const cardClassName = 'min-h-[280px] min-w-[650px] pb-5';
+
   return (
-    <div className="space-y-6 px-28 pt-0.5">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="min-h-[280px] pb-5">
+    <div className="space-y-6 px-28 pt-0.5 3xl:max-w-3xl m-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 m-auto w-max">
+        <Card className={cardClassName}>
           <DashboardChart chartType={CHART_BY_TYPE} />
         </Card>
-        <Card className="min-h-[280px] pb-5">
+        <Card className={cardClassName}>
           <DashboardChart chartType={CHART_BY_DATE} />
         </Card>
-        <Card className="min-h-[280px] pb-5">
+        <Card className={cardClassName}>
           <DashboardChart chartType={CHART_BY_COST} />
         </Card>
-        <Card className="min-h-[280px] pb-5">
+        <Card className={cardClassName}>
           <DashboardChart chartType={CHART_BY_STATUS} />
         </Card>
       </div>

@@ -16,6 +16,12 @@ module.exports = {
         primary: 'var(--primary)',
         primarySaturated: 'var(--primary-saturated)',
         secondary: 'var(--secondary)'
+      },
+      screens: {
+        '3xl': '2560px'
+      },
+      maxWidth: {
+        '3xl': '1600px'
       }
     }
   },
