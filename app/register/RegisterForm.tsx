@@ -22,19 +22,24 @@ const RegisterForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await fetch('/api/register', {
-      method: 'POST',
-      body: JSON.stringify(userInfo),
-      headers: { 'Content-Type': 'application/json' }
-    });
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        body: JSON.stringify(userInfo),
+        headers: { 'Content-Type': 'application/json' }
+      });
 
-    if (res.ok) {
-      alert('Registration successful! Please log in.');
-      router.push('/login');
+      if (res.ok) {
+        alert('Registration successful! Please log in.');
+        router.push('/login');
+      } else {
+        const data = await res.json();
+        alert(data.error || 'Registration failed');
+      }
+    } catch (error) {
+      alert('Registration failed');
+    } finally {
       setLoading(false);
-    } else {
-      const data = await res.json();
-      alert(data.error || 'Registration failed');
     }
   };
 
@@ -52,6 +57,7 @@ const RegisterForm = () => {
             type="text"
             value={name}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="mb-4">
@@ -74,8 +80,12 @@ const RegisterForm = () => {
             required
           />
         </div>
-        <Button type="submit" className="w-full">
-          {isLoading ? <ClipLoader color="white" size="23" /> : 'Register'}
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? (
+            <ClipLoader data-testid="spinner" color="white" size={23} />
+          ) : (
+            'Register'
+          )}
         </Button>
       </form>
       <p className="mt-2">
