@@ -14,14 +14,14 @@ export interface Incident {
 }
 
 export interface IncidentFilters {
-  query: '';
-  status: '';
-  incidentType: '';
-  location: '';
-  dateReportedFrom: '';
-  dateReportedTo: '';
-  resolutionDateFrom: '';
-  resolutionDateTo: '';
+  query: string;
+  status: string;
+  incidentType: string;
+  location: string;
+  dateReportedFrom: string;
+  dateReportedTo: string;
+  resolutionDateFrom: string;
+  resolutionDateTo: string;
   minCost: number;
   maxCost: number;
 }
