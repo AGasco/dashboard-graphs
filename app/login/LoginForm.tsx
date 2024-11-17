@@ -5,11 +5,13 @@ import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
 const initialState = { email: '', password: '' };
 
 const LoginForm = () => {
   const [userInfo, setUserInfo] = useState(initialState);
+  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
   const { email, password } = userInfo;
@@ -20,6 +22,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const res = await signIn(PROVIDER_CREDENTIALS, {
       email,
@@ -28,7 +31,7 @@ const LoginForm = () => {
     });
 
     if (res && !res.error) {
-      router.push('/dashboard');
+      router.push('/');
     } else {
       alert('Invalid credentials');
     }
@@ -59,8 +62,8 @@ const LoginForm = () => {
             required
           />
         </div>
-        <Button type="submit" className="w-full">
-          Login
+        <Button type="submit" className="w-full" disabled={isLoading}>
+          {isLoading ? <ClipLoader color="white" size="23" /> : 'Login'}
         </Button>
       </form>
       <p className="mt-2">

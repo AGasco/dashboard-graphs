@@ -3,11 +3,13 @@ import { Button, Input } from '@/components';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ChangeEvent, FormEvent, useState } from 'react';
+import { ClipLoader } from 'react-spinners';
 
 const initialState = { name: '', email: '', password: '' };
 
 const RegisterForm = () => {
   const [userInfo, setUserInfo] = useState(initialState);
+  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
   const { name, email, password } = userInfo;
@@ -18,6 +20,7 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     const res = await fetch('/api/register', {
       method: 'POST',
@@ -28,6 +31,7 @@ const RegisterForm = () => {
     if (res.ok) {
       alert('Registration successful! Please log in.');
       router.push('/login');
+      setLoading(false);
     } else {
       const data = await res.json();
       alert(data.error || 'Registration failed');
@@ -71,7 +75,7 @@ const RegisterForm = () => {
           />
         </div>
         <Button type="submit" className="w-full">
-          Register
+          {isLoading ? <ClipLoader color="white" size="23" /> : 'Register'}
         </Button>
       </form>
       <p className="mt-2">
