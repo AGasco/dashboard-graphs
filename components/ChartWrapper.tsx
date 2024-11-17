@@ -2,7 +2,7 @@ import { CHART_BAR, CHART_DOUGHNUT, CHART_LINE } from '@/consts';
 import { useThemeColors } from '@/hooks';
 import { AvailableChartTypes } from '@/types';
 import { ChartData } from 'chart.js';
-import { getChartOptions } from 'config';
+import { getChartOptions } from '@/config';
 import { useMemo } from 'react';
 import { Bar, Doughnut, Line } from 'react-chartjs-2';
 

@@ -48,7 +48,7 @@ const Navbar = () => {
             onClick={handleSignOut}
             disabled={isLoading}
           >
-            {isLoading ? <ClipLoader color="white" size="23" /> : 'Sign Out'}
+            {isLoading ? <ClipLoader color="white" size={23} /> : 'Sign Out'}
           </Button>
         ) : (
           <Link href="/register" className="text-white">
