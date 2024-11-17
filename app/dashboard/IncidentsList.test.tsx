@@ -3,7 +3,6 @@ import { formatDate } from '@/utils';
 import { fireEvent, render, screen } from '@testing-library/react';
 import IncidentsList from './IncidentsList';
 
-// Mock Pagination component
 jest.mock('@/components/Pagination', () => ({
   __esModule: true,
   default: ({ currentPage, totalItems, itemsPerPage, onPageChange }: any) => (
@@ -13,7 +12,6 @@ jest.mock('@/components/Pagination', () => ({
   )
 }));
 
-// Mock formatDate utility
 jest.mock('@/utils', () => ({
   formatDate: jest.fn()
 }));
@@ -49,7 +47,6 @@ describe('IncidentsList', () => {
   ];
 
   beforeEach(() => {
-    // Mock formatDate to return formatted strings
     mockFormatDate.mockImplementation((date: Date | null) =>
       date ? date.toISOString().split('T')[0] : 'N/A'
     );
