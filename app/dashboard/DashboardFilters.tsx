@@ -10,7 +10,7 @@ interface Props {
 
 const DashboardFilters = ({ inputData, handleChange }: Props) => {
   return (
-    <div className="mb-4 space-y-2">
+    <div className="mb-4 space-y-3">
       <Input
         type="text"
         name="query"
@@ -51,7 +51,7 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
       />
 
       {/* Date Reported Range Filter */}
-      <div className="flex space-x-3 w-full">
+      <div className="flex w-full flex-col space-y-2 lg:flex-row lg:space-x-3 lg:space-y-0">
         <Input
           type="date"
           name="dateReportedFrom"
@@ -71,7 +71,7 @@ const DashboardFilters = ({ inputData, handleChange }: Props) => {
       </div>
 
       {/* Resolution Date Range Filter */}
-      <div className="flex space-x-3 w-full">
+      <div className="flex w-full flex-col space-y-2 lg:flex-row lg:space-x-3 lg:space-y-0">
         <Input
           type="date"
           name="resolutionDateFrom"
