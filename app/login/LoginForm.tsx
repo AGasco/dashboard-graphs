@@ -1,6 +1,6 @@
 'use client';
 import { Button, Input } from '@/components';
-import { PROVIDER_CREDENTIALS } from 'consts';
+import { PROVIDER_CREDENTIALS } from '@/consts';
 import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -17,7 +17,7 @@ const LoginForm = () => {
   const { email, password } = userInfo;
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({ ...userInfo, [e.target.type]: e.target.value });
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -46,6 +46,8 @@ const LoginForm = () => {
         <h1 className="mb-4 text-2xl font-bold text-center">Login</h1>
         <div className="mb-4">
           <Input
+            id="email"
+            name="email"
             label="Email"
             type="email"
             value={email}
@@ -55,6 +57,8 @@ const LoginForm = () => {
         </div>
         <div className="mb-6">
           <Input
+            id="password"
+            name="password"
             label="Password"
             type="password"
             value={password}
@@ -63,7 +67,11 @@ const LoginForm = () => {
           />
         </div>
         <Button type="submit" className="w-full" disabled={isLoading}>
-          {isLoading ? <ClipLoader color="white" size="23" /> : 'Login'}
+          {isLoading ? (
+            <ClipLoader data-testid="spinner" color="white" size={23} />
+          ) : (
+            'Login'
+          )}
         </Button>
       </form>
       <p className="mt-2">
