@@ -24,16 +24,22 @@ const LoginForm = () => {
     e.preventDefault();
     setLoading(true);
 
-    const res = await signIn(PROVIDER_CREDENTIALS, {
-      email,
-      password,
-      redirect: false
-    });
+    try {
+      const res = await signIn(PROVIDER_CREDENTIALS, {
+        email,
+        password,
+        redirect: false
+      });
 
-    if (res && !res.error) {
-      router.push('/');
-    } else {
-      alert('Invalid credentials');
+      if (res && !res.error) {
+        router.push('/');
+      } else {
+        alert('Invalid credentials');
+      }
+    } catch (error) {
+      alert('An unexpected error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
