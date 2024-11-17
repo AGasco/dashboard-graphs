@@ -8,7 +8,8 @@ import {
   CHART_DOUGHNUT,
   CHART_LINE
 } from '@/consts';
-import { useIncidentStats } from '@/hooks';
+import { useFetchData } from '@/hooks';
+import { IncidentChartStats } from '@/types';
 import {
   ArcElement,
   BarElement,
@@ -45,7 +46,12 @@ interface Props {
 }
 
 const DashboardChart = ({ chartType }: Props) => {
-  const { stats, error, isLoading } = useIncidentStats();
+  const {
+    data: stats,
+    error,
+    isLoading
+  } = useFetchData<IncidentChartStats>('/incident-stats');
+
   const {
     incidentsByTypeData,
     incidentsByDateData,

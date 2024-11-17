@@ -11,7 +11,7 @@ interface FetchDataResult<T> {
 const useFetchData = <T,>(url: string): FetchDataResult<T> => {
   const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState<Error | null>(null);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     let isMounted = true;
