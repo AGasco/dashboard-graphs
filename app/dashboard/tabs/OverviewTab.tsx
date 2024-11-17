@@ -8,11 +8,11 @@ import {
 import DashboardChart from '../DashboardChart';
 
 const OverviewTab = () => {
-  const cardClassName = 'min-h-[280px] min-w-[650px] pb-5';
+  const cardClassName = 'min-h-[280px] max-w-full 2xl:min-w-[650px] pb-5';
 
   return (
-    <div className="space-y-6 px-28 pt-0.5 3xl:max-w-3xl m-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 m-auto w-max">
+    <div className="space-y-6 pt-0.5 pb-4 m-auto 2xl:px-28 3xl:max-w-3xl">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 m-auto 2xl:w-max">
         <Card className={cardClassName}>
           <DashboardChart chartType={CHART_BY_TYPE} />
         </Card>
