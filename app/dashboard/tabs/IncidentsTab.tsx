@@ -11,7 +11,6 @@ const IncidentsTab = () => {
   const { inputData, queryString, page, setPage, handleChange } =
     useDashboardFilters();
 
-  // TODO This is not a NextResponse. Change to a better naming
   const { data, error, isLoading } = useFetchData<NextResponse>(
     `/data?${queryString}`
   );
@@ -44,6 +43,7 @@ const IncidentsTab = () => {
               />
             ) : (
               <PulseLoader
+                data-testid="spinner"
                 className="flex-1 justify-center items-center h-full w-full mb-7"
                 color="var(--primary)"
               />

@@ -1,7 +1,7 @@
 import { Input, Select } from '@/components';
 import { IncidentFilters, IncidentType, Location, Status } from '@/types';
 import { ChangeEvent } from 'react';
-import { enumToOptions } from 'utils/utils';
+import { enumToOptions } from '@/utils';
 
 interface Props {
   inputData: IncidentFilters;
