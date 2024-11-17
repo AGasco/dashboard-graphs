@@ -22,9 +22,9 @@ const IncidentsTab = () => {
   const total = data?.total || 0;
 
   return (
-    <div className="space-y-6 px-2 3xl:max-w-3xl m-auto">
-      <div className="flex">
-        <div className="w-full h-full md:w-1/3 px-3">
+    <div className="space-y-6 px-2 3xl:max-w-3xl mx-auto">
+      <div className="flex flex-col xl:flex-row">
+        <div className="w-full h-full md:w-2/3 xl:w-1/3 px-3 mx-auto">
           <Card className="min-h-[570px] flex-1">
             <DashboardFilters
               inputData={inputData}
@@ -33,7 +33,7 @@ const IncidentsTab = () => {
           </Card>
         </div>
 
-        <div className="w-full h-full md:w-2/3 px-3">
+        <div className="w-full h-full md:w-2/3 px-3 mt-5 xl:mt-0 m-auto">
           <Card className="min-h-[570px]">
             {!isLoading ? (
               <IncidentsList

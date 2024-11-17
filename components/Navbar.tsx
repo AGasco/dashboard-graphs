@@ -4,6 +4,7 @@ import { THEME_LIGHT } from '@/consts';
 import { useTheme } from '@/contexts';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { MdDarkMode, MdOutlineLightMode } from 'react-icons/md';
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -14,9 +15,15 @@ const Navbar = () => {
       <Link href="/" className="text-xl font-bold text-white">
         Home
       </Link>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center space-x-2">
         <Button onClick={toggleTheme}>
-          Switch to {theme === THEME_LIGHT ? 'Dark' : 'Light'} Mode
+          Switch to
+          {theme === THEME_LIGHT ? (
+            <MdDarkMode className="mx-1" />
+          ) : (
+            <MdOutlineLightMode className="mx-1" />
+          )}
+          Mode
         </Button>
         {session ? (
           <Button
