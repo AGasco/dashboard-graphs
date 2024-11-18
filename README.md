@@ -226,4 +226,4 @@ The application is deployed on Vercel and can be accessed via the following link
 
 ## Contact
 
-For any questions or feedback, please do not hesitate to contact me via `[antoniofgasco@gmail.com](mailto:antoniofgasco@gmail.com)`
+For any questions or feedback, please do not hesitate to contact me via antoniofgasco@gmail.com
