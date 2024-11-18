@@ -56,7 +56,7 @@ This project is a web application built with **React**, **Next.js**, **TypeScrip
 1. **Clone the repository:**
 
    ```bash
-     git clone https://github.com/yourusername/technical-test-as.git
+     git clone https://github.com/AGasco/technical-test-as.git
    ```
 2. **Navigate to the project directory:**
    
