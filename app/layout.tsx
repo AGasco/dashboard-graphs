@@ -16,8 +16,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'Technical test - Antonio F. Gasco',
-  description: 'This is a technical test for a frontend developer position'
+  title: 'Dashboard Graphs'
 };
 
 export default function RootLayout({
