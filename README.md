@@ -1,4 +1,4 @@
-# Technical Test: React Developer with Next.js, TypeScript, and Tailwind CSS
+# Dashboard using React with Next.js, TypeScript, and Tailwind CSS
 
 **LIVE DEMO**: https://technical-test-as.vercel.app/
 
